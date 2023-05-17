@@ -22,7 +22,7 @@
         android:layout_marginBottom="60dp">
 
         <LinearLayout
-            android:id="@+id/layNationalParkingLot"
+            android:id="@+id/SeoulParkingLot"
             android:orientation="vertical"
             android:layout_width="0px"
             android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/laySchoolParkingLot"
+            android:id="@+id/VoiceFind"
             android:orientation="vertical"
             android:layout_width="0px"
             android:layout_height="wrap_content"

@@ -39,13 +39,13 @@ public class MainActivity extends AppCompatActivity {
         setTitle(R.string.app_name);
 
 
-        findViewById(R.id.layNationalParkingLot).setOnClickListener(view -> {
+        findViewById(R.id.SeoulParkingLot).setOnClickListener(view -> {
             // 서울 주차장 현황
             Intent intent = new Intent(this, seoulActivity.class);
             startActivity(intent);
         });
 
-        findViewById(R.id.laySchoolParkingLot).setOnClickListener(view -> {
+        findViewById(R.id.VoiceFind).setOnClickListener(view -> {
             // 음성지원
             Intent intent = new Intent(this, SttActivity.class);
             startActivity(intent);
