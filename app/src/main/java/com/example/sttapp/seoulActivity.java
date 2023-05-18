@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Bundle;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,12 +30,15 @@ public class seoulActivity extends AppCompatActivity implements MapView.CurrentL
     private MapView mapView;
     private ViewGroup mapViewContainer;
 
+
+    private SearchView mSearchView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seoul);
 
-
+        // 서치뷰
+        mSearchView = findViewById(R.id.searchView); // SearchView
         // 권한ID를 가져옵니다
         int permission = ContextCompat.checkSelfPermission(this,
                 Manifest.permission.INTERNET);
@@ -65,7 +69,6 @@ public class seoulActivity extends AppCompatActivity implements MapView.CurrentL
         mapViewContainer.addView(mapView);
 
 
-
         // 줌 레벨 변경
         mapView.setZoomLevel(4, true);
 
@@ -79,12 +82,31 @@ public class seoulActivity extends AppCompatActivity implements MapView.CurrentL
         for (TestData data : dataArr) {
             MapPOIItem marker = new MapPOIItem();
             marker.setMapPoint(MapPoint.mapPointWithGeoCoord(data.getLatitude(), data.getLongitude()));
-            marker.setItemName(data.getName());
+            marker.setItemName(data.getPname() + '\n' + data.getName());
             markerArr.add(marker);
         }
         mapView.addPOIItems(markerArr.toArray(new MapPOIItem[markerArr.size()]));
 
+        //서치뷰 함수 부분 );까지
+        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+
+                if (s.contains("주차장")) {
+                    // System.out.println("data11111111111111111111111111111111111111111111111111111111111111"+data);
+                    mapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(37.5518018,127.0736343), true);
+
+                }
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                // 입력란의 문자열이 바뀔 때 처리
+                return false;
+            }
+        });
     }
 
     // 권한 체크 이후로직
@@ -109,6 +131,7 @@ public class seoulActivity extends AppCompatActivity implements MapView.CurrentL
             }
         }
     }
+
 
     @Override
     public void onCurrentLocationUpdate(MapView mapView, MapPoint mapPoint, float v) {
@@ -179,6 +202,8 @@ public class seoulActivity extends AppCompatActivity implements MapView.CurrentL
 // TestData class 생성
 class TestData {
     String name;
+
+    String pname;
     Double latitude;
     Double longitude;
 
@@ -190,6 +215,13 @@ class TestData {
         return name;
     }
 
+    public void setPname(String pname) {
+        this.pname = pname;
+    }
+
+    public String getPname() {
+        return pname;
+    }
     public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
@@ -210,6 +242,7 @@ class TestData {
     public String toString() {
         return "TestData{" +
                 "name='" + name + '\'' +
+                ", pname='" + pname + '\'' +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
                 '}';
@@ -241,8 +274,8 @@ class TestApiData {
                     parser.setInput(is,"utf-8");
 
                     //xml과 관련된 변수들
-                    boolean bName = false, bLat = false, bLong = false;
-                    String name = "", latitude = "", longitude = "";
+                    boolean bName = false, bLat = false, bLong = false, pName= false ;
+                    String name = "", latitude = "", longitude = "", pname= "";
 
                     //본격적으로 파싱
                     while(parser.getEventType() != XmlPullParser.END_DOCUMENT) {
@@ -257,6 +290,8 @@ class TestApiData {
                                 bLat = true;
                             }else if (parser.getName().equals("LNG")) {// 경도 태그
                                 bLong = true;
+                            }else if (parser.getName().equals("PARKING_NAME")) {// 위도 태그
+                                pName = true;
                             }
                         }
                         //내용(텍스트) 확인
@@ -270,6 +305,9 @@ class TestApiData {
                             } else if (bLong) {
                                 longitude = parser.getText();
                                 bLong = false;
+                            }else if (pName) {
+                                pname = parser.getText();
+                                pName = false;
                             }
                         }
                         //내용 다 읽었으면 데이터 추가
@@ -277,7 +315,7 @@ class TestApiData {
                             data.setName(name); // 데이터 네임 확인
                             data.setLatitude(Double.valueOf(latitude));
                             data.setLongitude(Double.valueOf(longitude));
-
+                            data.setPname(pname);
                             dataArr.add(data);
                         }
 
@@ -303,5 +341,6 @@ class TestApiData {
 
         return dataArr;
     }
+
 
 }
