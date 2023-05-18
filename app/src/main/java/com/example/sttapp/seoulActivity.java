@@ -92,15 +92,15 @@ public class seoulActivity extends AppCompatActivity implements MapView.CurrentL
 
             @Override
             public boolean onQueryTextSubmit(String s) {
+                for (TestData data : dataArr) {
+                    if (data.pname.contains(s)) {
+                        //System.out.println("data11111111111111111111111111111111111111111111111111111111111111" + data);
+                        mapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(data.latitude, data.longitude), true);
 
-                if (s.contains("주차장")) {
-                    // System.out.println("data11111111111111111111111111111111111111111111111111111111111111"+data);
-                    mapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(37.5518018,127.0736343), true);
-
+                    }
                 }
                 return true;
             }
-
             @Override
             public boolean onQueryTextChange(String s) {
                 // 입력란의 문자열이 바뀔 때 처리
