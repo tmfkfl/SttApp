@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SttApp</string>
+    <string name="app_name">HelPark</string>
     <string name="title_activity_seoul_parking">SeoulParkingActivity</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -46,4 +46,8 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="Search">Search</string>
+    <string name="action_search">action_search</string>
+    <string name="success">안내문</string>
+<!--    <string name="sttStart">음성인식 버튼</string>-->
 </resources>

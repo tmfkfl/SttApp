@@ -1,18 +1,407 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".seoulActivity"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    ...
+
 
     <RelativeLayout
         android:id="@+id/map_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-    ...
+        android:layout_height="match_parent">
+
+        <!--        (1)proguard_rules.pro 검색 후-->
+        <!--        -keep class androidx.core.app.CoreComponentFactory { *; }-->
+        <!--        추가-->
+
+        <!--        (2)res -> values -> themes-->
+        <!--        themes.xml-->
+        <!--        themes.xml(night)-->
+        <!--        parent = "Theme.Appcompat. ..."-->
+        <!--        으로 바꿔주기-->
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/navi_btn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="150dp"
+            android:background="@drawable/navigation"
+            android:contentDescription="길찾기 버튼" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/navi_btn_close"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="210dp"
+            android:visibility="gone"
+            android:background="@drawable/cancel" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/move_navi_btn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/kakaonavi"
+            android:contentDescription="카카오 연동"
+            android:visibility="gone" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/sttStart"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/mike4"
+            android:contentDescription="음성인식 버튼"
+            android:fontFamily="@font/seoul_namsan_m"
+            android:scaleType="fitCenter" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_findMarker"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="90dp"
+            android:background="@drawable/parkimo"
+            android:contentDescription="가까운 마커 찾는 버튼"
+            android:fontFamily="@font/seoul_namsan_m" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_currentLocation"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/location3"
+            android:contentDescription="가까운 마커 찾는 버튼"
+            android:fontFamily="@font/seoul_namsan_m" />
+
+
+    </RelativeLayout>
+<!--    최종 수정-->
+    <HorizontalScrollView
+        android:layout_width="330dp"
+        android:layout_height="20dp"
+        android:contentDescription="Scroll for parkinglot in each gu"
+        android:layout_marginTop="90dp"
+        android:layout_centerHorizontal="true">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_Gangnamgu"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/background_btn"
+                android:contentDescription="Parkinglot"
+                android:fontFamily="@font/seoul_namsan_m"
+                android:text="강남구"
+                android:elevation="30dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_Gangdonggu"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:contentDescription="Parkinglot"
+                android:fontFamily="@font/seoul_namsan_m"
+                android:text="강동구"
+                android:background="@drawable/background_btn"
+                android:elevation="30dp"/>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_Gangbukgu"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:contentDescription="Parkinglot"
+                android:fontFamily="@font/seoul_namsan_m"
+                android:text="강북구"
+                android:background="@drawable/background_btn"
+                android:elevation="30dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_Gangseogu"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:contentDescription="Parkinglot"
+                android:fontFamily="@font/seoul_namsan_m"
+                android:text="강서구"
+                android:background="@drawable/background_btn"
+                android:elevation="30dp"/>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_Gwanakgu"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:contentDescription="Parkinglot"
+                android:fontFamily="@font/seoul_namsan_m"
+                android:text="관악구"
+                android:background="@drawable/background_btn"
+                android:elevation="30dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_Gwangjingu"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:contentDescription="Parkinglot"
+                android:fontFamily="@font/seoul_namsan_m"
+                android:text="광진구"
+                android:background="@drawable/background_btn"
+                android:elevation="30dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_Gurogu"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:contentDescription="Parkinglot"
+                android:fontFamily="@font/seoul_namsan_m"
+                android:text="구로구"
+                android:background="@drawable/background_btn"
+                android:elevation="30dp"/>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_Geumcheongu"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:contentDescription="Parkinglot"
+                android:fontFamily="@font/seoul_namsan_m"
+                android:text="금천구"
+                android:background="@drawable/background_btn"
+                android:elevation="30dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_Nowongu"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:contentDescription="Parkinglot"
+                android:fontFamily="@font/seoul_namsan_m"
+                android:text="노원구"
+                android:background="@drawable/background_btn"
+                android:elevation="30dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_Dobonggu"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:contentDescription="Parkinglot"
+                android:fontFamily="@font/seoul_namsan_m"
+                android:text="도봉구"
+                android:background="@drawable/background_btn"
+                android:elevation="30dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_Dongdaemungu"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:contentDescription="Parkinglot"
+                android:fontFamily="@font/seoul_namsan_m"
+                android:text="동대문구"
+                android:background="@drawable/background_btn"
+                android:elevation="30dp"/>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_Dongjakgu"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:contentDescription="Parkinglot"
+                android:fontFamily="@font/seoul_namsan_m"
+                android:text="동작구"
+                android:background="@drawable/background_btn"
+                android:elevation="30dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_Mapogu"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:contentDescription="Parkinglot"
+                android:fontFamily="@font/seoul_namsan_m"
+                android:text="마포구"
+                android:background="@drawable/background_btn"
+                android:elevation="30dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_Seodaemungu"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:contentDescription="Parkinglot"
+                android:fontFamily="@font/seoul_namsan_m"
+                android:text="서대문구"
+                android:background="@drawable/background_btn"
+                android:elevation="30dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_Seochogu"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:contentDescription="Parkinglot"
+                android:fontFamily="@font/seoul_namsan_m"
+                android:text="서초구"
+                android:background="@drawable/background_btn"
+                android:elevation="30dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_Sungdongguu"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:contentDescription="Parkinglot"
+                android:fontFamily="@font/seoul_namsan_m"
+                android:text="성동구"
+                android:background="@drawable/background_btn"
+                android:elevation="30dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_Sungbukgu"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:contentDescription="Parkinglot"
+                android:fontFamily="@font/seoul_namsan_m"
+                android:text="성북구"
+                android:background="@drawable/background_btn"
+                android:elevation="30dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_Songpagu"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:contentDescription="Parkinglot"
+                android:fontFamily="@font/seoul_namsan_m"
+                android:text="송파구"
+                android:background="@drawable/background_btn"
+                android:elevation="30dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_Yangcheongu"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:contentDescription="Parkinglot"
+                android:fontFamily="@font/seoul_namsan_m"
+                android:text="양천구"
+                android:background="@drawable/background_btn"
+                android:elevation="30dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_Yeongdeungpogu"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:contentDescription="Parkinglot"
+                android:fontFamily="@font/seoul_namsan_m"
+                android:text="영등포구"
+                android:background="@drawable/background_btn"
+                android:elevation="30dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_Yongsangu"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:contentDescription="Parkinglot"
+                android:fontFamily="@font/seoul_namsan_m"
+                android:text="용산구"
+                android:background="@drawable/background_btn"
+                android:elevation="30dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_Eunpyeonggu"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:contentDescription="Parkinglot"
+                android:fontFamily="@font/seoul_namsan_m"
+                android:text="은평구"
+                android:background="@drawable/background_btn"
+                android:elevation="30dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_Jongrogu"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:contentDescription="Parkinglot"
+                android:fontFamily="@font/seoul_namsan_m"
+                android:text="종로구"
+                android:background="@drawable/background_btn"
+                android:elevation="30dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_Jeunggu"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:contentDescription="Parkinglot"
+                android:fontFamily="@font/seoul_namsan_m"
+                android:text="중구"
+                android:background="@drawable/background_btn"
+                android:elevation="30dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_Joongranggu"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:contentDescription="Parkinglot"
+                android:fontFamily="@font/seoul_namsan_m"
+                android:text="중랑구"
+                android:background="@drawable/background_btn"
+                android:elevation="30dp"/>
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+    <!--    최종 수정-->
     <SearchView
         android:id="@+id/searchView"
-        android:layout_width="match_parent"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
-        android:visibility="visible" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/background"
+        android:visibility="visible"
+        android:elevation="10dp" />
+
+
 </RelativeLayout>
